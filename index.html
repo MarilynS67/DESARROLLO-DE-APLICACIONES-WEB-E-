@@ -1,123 +1,466 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desarrollo Web</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Desarrollo Web</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<style>
+
+body{
+background:#f5f7fa;
+font-family:Arial,sans-serif;
+}
+
+header{
+background:#0d6efd;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+section{
+padding:40px 0;
+}
+
+.card{
+box-shadow:0px 5px 12px rgba(0,0,0,0.15);
+border:none;
+}
+
+.card:hover{
+transform:translateY(-5px);
+transition:0.3s;
+}
+
+img{
+border-radius:10px;
+}
+
+aside{
+background:white;
+padding:20px;
+margin:30px;
+border-radius:10px;
+}
+
+footer{
+background:#212529;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.btn{
+border-radius:20px;
+}
+
+@media(max-width:768px){
+
+header{
+padding:20px;
+}
+
+iframe{
+width:100%;
+height:250px;
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <header>
-        <h1>Desarrollo Web</h1>
-    </header>
+<header>
 
-    <nav>
-        <a href="#inicio">Inicio</a> |
-        <a href="#quienes">Quiénes Somos</a> |
-        <a href="#servicios">Servicios</a> |
-        <a href="#contacto">Contacto</a>
-    </nav>
+<h1>Desarrollo Web</h1>
 
-    <main>
+<p>
+Aprendiendo tecnologías modernas para crear páginas web
+</p>
 
-        <section id="inicio">
-            <h2>Inicio</h2>
+</header>
 
-            <p>
-                Bienvenido a mi proyecto de Desarrollo Web.
-                Este sitio tiene como objetivo mostrar información
-                relacionada con la creación de páginas web modernas,
-                el uso de tecnologías digitales y el aprendizaje
-                de herramientas para el desarrollo de aplicaciones web.
-            </p>
-        </section>
 
-        <section id="quienes">
-            <h2>Quiénes Somos</h2>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-            <p>
-                Somos un proyecto orientado al aprendizaje y desarrollo
-                de tecnologías web. Nuestro propósito es brindar
-                conocimientos sobre la creación de sitios web utilizando
-                herramientas modernas como HTML5, CSS y JavaScript.
-                Buscamos ayudar a estudiantes y personas interesadas en
-                la informática a comprender cómo funcionan las páginas
-                web y cómo pueden desarrollar sus propios proyectos.
-                Además, promovemos el uso de buenas prácticas en diseño,
-                accesibilidad y organización de contenido. Creemos que
-                el desarrollo web es una habilidad fundamental en la
-                actualidad, ya que permite crear soluciones digitales
-                innovadoras para empresas, instituciones educativas y
-                emprendimientos que buscan tener presencia en Internet.
-            </p>
+<div class="container">
 
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
-                 alt="Desarrollo Web"
-                 width="400">
-        </section>
+<a class="navbar-brand" href="#">
+Proyecto Web
+</a>
 
-        <section id="servicios">
-            <h2>Servicios</h2>
+<button
+class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#menu">
 
-            <ul>
-                <li>Diseño de páginas web</li>
-                <li>Desarrollo de sitios institucionales</li>
-                <li>Mantenimiento de páginas web</li>
-                <li>Asesoría tecnológica</li>
-                <li>Capacitación en HTML5</li>
-            </ul>
-        </section>
+<span class="navbar-toggler-icon"></span>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
+</button>
 
-            <p>Correo: contacto@desarrolloweb.com</p>
+<div
+class="collapse navbar-collapse"
+id="menu">
 
-            <p>Teléfono: 0999999999</p>
+<ul class="navbar-nav ms-auto">
 
-            <p>Dirección: Guayaquil, Ecuador</p>
+<li class="nav-item">
+<a class="nav-link"
+href="#inicio">
+Inicio
+</a>
+</li>
 
-            <a href="https://www.facebook.com">Facebook</a>
-            <br><br>
+<li class="nav-item">
+<a class="nav-link"
+href="#quienes">
+Quiénes Somos
+</a>
+</li>
 
-            <a href="https://www.instagram.com">Instagram</a>
-        </section>
+<li class="nav-item">
+<a class="nav-link"
+href="#servicios">
+Servicios
+</a>
+</li>
 
-        <article>
-            <h2>Video Informativo</h2>
+<li class="nav-item">
+<a class="nav-link"
+href="#contacto">
+Contacto
+</a>
+</li>
 
-            <iframe width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/UB1O30fR-EE"
-                    title="Video HTML"
-                    allowfullscreen>
-            </iframe>
-        </article>
+</ul>
 
-    </main>
+</div>
 
-    <aside>
-        <h3>Información Adicional</h3>
+</div>
 
-        <p>
-            Horario de atención:
-            Lunes a Viernes de 08:00 a 17:00.
-        </p>
+</nav>
 
-        <p>
-            Promoción especial:
-            asesoría gratuita para nuevos estudiantes.
-        </p>
-    </aside>
 
-    <footer>
-        <p>
-            Rubi Marilyn - Desarrollo de Aplicaciones Web - 2026
-        </p>
-    </footer>
+<main>
+
+<section
+id="inicio"
+class="container text-center">
+
+<h2>
+Inicio
+</h2>
+
+<p class="mt-4">
+
+Bienvenido a mi proyecto de Desarrollo Web.
+Este sitio tiene como objetivo mostrar información
+relacionada con la creación de páginas modernas,
+el uso de tecnologías digitales y el aprendizaje
+de herramientas para el desarrollo web.
+
+</p>
+
+<button class="btn btn-primary">
+Conocer Más
+</button>
+
+</section>
+
+
+
+<section
+id="quienes"
+class="container">
+
+<h2 class="text-center mb-5">
+
+Quiénes Somos
+
+</h2>
+
+<div class="row align-items-center">
+
+<div class="col-md-6">
+
+<p>
+
+Somos un proyecto orientado al aprendizaje y desarrollo
+de tecnologías web.
+
+Nuestro propósito es brindar conocimientos sobre la creación
+de sitios utilizando HTML5, CSS y JavaScript.
+
+Promovemos buenas prácticas en diseño y accesibilidad.
+
+</p>
+
+</div>
+
+<div class="col-md-6">
+
+<img
+class="img-fluid"
+
+src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+
+alt="Desarrollo Web">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section
+id="servicios"
+class="container">
+
+<h2 class="text-center mb-5">
+
+Servicios
+
+</h2>
+
+<div class="row">
+
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<h4>
+Diseño Web
+</h4>
+
+<p>
+
+Creación de páginas modernas.
+
+</p>
+
+<button class="btn btn-primary">
+
+Ver más
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<h4>
+
+Asesoría Tecnológica
+
+</h4>
+
+<p>
+
+Apoyo en proyectos digitales.
+
+</p>
+
+<button class="btn btn-success">
+
+Ver más
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<div class="card p-3 m-3">
+
+<h4>
+
+Capacitación
+
+</h4>
+
+<p>
+
+Aprendizaje en HTML y Bootstrap.
+
+</p>
+
+<button class="btn btn-dark">
+
+Ver más
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section
+id="contacto"
+class="container">
+
+<h2 class="text-center">
+
+Contacto
+
+</h2>
+
+<form>
+
+<input
+class="form-control m-3"
+type="text"
+placeholder="Nombre">
+
+<input
+class="form-control m-3"
+type="email"
+placeholder="Correo electrónico">
+
+<input
+class="form-control m-3"
+type="text"
+placeholder="Asunto">
+
+<textarea
+class="form-control m-3"
+rows="4"
+placeholder="Mensaje">
+</textarea>
+
+<button
+class="btn btn-primary">
+
+Enviar
+
+</button>
+
+</form>
+
+<br>
+
+<a
+class="btn btn-outline-primary"
+href="https://www.facebook.com">
+
+Facebook
+
+</a>
+
+<a
+class="btn btn-outline-danger"
+href="https://www.instagram.com">
+
+Instagram
+
+</a>
+
+</section>
+
+
+
+<article
+class="container text-center">
+
+<h2>
+
+Video Informativo
+
+</h2>
+
+<iframe
+
+width="700"
+height="350"
+
+src="https://www.youtube.com/embed/UB1O30fR-EE"
+
+title="Video HTML"
+
+allowfullscreen>
+
+</iframe>
+
+</article>
+
+
+</main>
+
+
+
+<aside>
+
+<h3>
+
+Información Adicional
+
+</h3>
+
+<p>
+
+Horario de atención:
+Lunes a Viernes
+08:00–17:00
+
+</p>
+
+<p>
+
+Promoción especial:
+asesoría gratuita.
+
+</p>
+
+</aside>
+
+
+
+<footer>
+
+<p>
+
+Rubi Marilyn —
+Desarrollo de Aplicaciones Web —
+2026
+
+</p>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
 </body>
 
 </html>
+```
