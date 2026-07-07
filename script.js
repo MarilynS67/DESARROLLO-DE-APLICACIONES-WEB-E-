@@ -9,7 +9,50 @@ const descripcion = document.getElementById("descripcion");
 const categoria = document.getElementById("categoria");
 
 
-let total = 0;
+
+let registros = [];
+
+function mostrarRegistros(){
+
+    lista.innerHTML = "";
+
+    if(registros.length === 0){
+
+        lista.innerHTML =
+        '<div class="alert alert-warning">No existen registros.</div>';
+
+        contador.textContent = 0;
+
+        return;
+    }
+
+    registros.forEach(function(registro, indice){
+
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "card p-3 m-3";
+
+        tarjeta.innerHTML = `
+            <h4>${registro.nombre}</h4>
+            <p>${registro.descripcion}</p>
+            <p><strong>Categoría:</strong> ${registro.categoria}</p>
+            <button class="btn btn-danger">Eliminar</button>
+        `;
+
+        tarjeta.querySelector("button").addEventListener("click", function(){
+
+            registros.splice(indice, 1);
+
+            mostrarRegistros();
+
+        });
+
+        lista.appendChild(tarjeta);
+
+    });
+
+    contador.textContent = registros.length;
+
+}
 
 
 function validarNombre(){
@@ -110,48 +153,21 @@ if(!correcto){
     mensaje.innerHTML =
     '<div class="alert alert-success">Registro agregado correctamente.</div>';
 
-    const tarjeta = document.createElement("div");
-    tarjeta.className = "card p-3 m-3";
+    const nuevoRegistro = {
+
+    nombre: nombre.value,
+
+    descripcion: descripcion.value,
+
+    categoria: categoria.value
+
+};
+
+registros.push(nuevoRegistro);
+
+mostrarRegistros();
 
 
-    const titulo = document.createElement("h4");
-    titulo.textContent = nombre.value;
-
-    const texto = document.createElement("p");
-    texto.textContent = descripcion.value;
-
-    const tipo = document.createElement("p");
-    tipo.innerHTML = "<strong>Categoría:</strong> " + categoria.value;
-
-
-
-
-    const boton = document.createElement("button");
-    boton.textContent = "Eliminar";
-    boton.className = "btn btn-danger";
-
-    boton.addEventListener("click", function() {
-
-        tarjeta.remove();
-
-        total--;
-
-        contador.textContent = total;
-    });
-
-    tarjeta.appendChild(titulo);
-    tarjeta.appendChild(texto);
-    tarjeta.appendChild(tipo);
-    tarjeta.appendChild(boton);
-
-    lista.appendChild(tarjeta);
-
-    total++;
-
-    contador.textContent = total;
-
-    mensaje.innerHTML =
-'<div class="alert alert-success">Registro agregado correctamente.</div>';
 
     formulario.reset();
 
