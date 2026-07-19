@@ -2,6 +2,7 @@ const formulario = document.getElementById("formRegistro");
 const lista = document.getElementById("listaRegistros");
 const mensaje = document.getElementById("mensaje");
 const contador = document.getElementById("contador");
+const spinner = document.getElementById("spinner");
 
 
 const nombre = document.getElementById("nombre");
@@ -135,12 +136,16 @@ formulario.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
+    spinner.classList.remove("d-none");
+
     const correcto =
 validarNombre() &&
 validarDescripcion() &&
 validarCategoria();
 
 if(!correcto){
+
+   spinner.classList.add("d-none");
 
     mensaje.innerHTML =
     '<div class="alert alert-danger">Corrija los errores antes de registrar.</div>';
@@ -163,11 +168,20 @@ if(!correcto){
 
 };
 
-registros.push(nuevoRegistro);
 
-mostrarRegistros();
+setTimeout(function () {
 
+    registros.push(nuevoRegistro);
 
+    mostrarRegistros();
+
+    spinner.classList.add("d-none");
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("modalRegistro")
+    );
+
+    modal.show();
 
     formulario.reset();
 
@@ -178,6 +192,8 @@ mostrarRegistros();
     document.getElementById("errorNombre").textContent = "";
     document.getElementById("errorDescripcion").textContent = "";
     document.getElementById("errorCategoria").textContent = "";
+
+}, 1500);
 
 
 setTimeout(function () {

@@ -436,6 +436,32 @@ Registrar
 
 <div id="mensaje"></div>
 
+<div
+id="spinner"
+class="text-center my-3 d-none">
+
+<div
+class="spinner-border text-primary"
+role="status">
+
+<span class="visually-hidden">
+
+Cargando...
+
+</span>
+
+</div>
+
+<p class="mt-2">
+
+Procesando registro...
+
+</p>
+
+</div>
+
+
+
 <h4 class="m-3">
 Total de registros:
 <span id="contador">0</span>
@@ -495,7 +521,64 @@ Desarrollo de Aplicaciones Web —
 
 <script src="script.js"></script>
 
+
 <!-- FIN DE base.html -->
+
+<div
+class="modal fade"
+id="modalRegistro"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+
+Registro exitoso
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<p>
+
+El servicio fue registrado correctamente.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-primary"
+data-bs-dismiss="modal">
+
+Aceptar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 </body>
 
