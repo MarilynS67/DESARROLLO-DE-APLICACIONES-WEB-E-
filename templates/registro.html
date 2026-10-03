@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Registro de usuario{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-6 col-lg-5">
+
+                <div class="card p-4 shadow-sm">
+
+                    <h2 class="text-center mb-4">
+                        Crear cuenta
+                    </h2>
+
+                    <form method="POST">
+
+                        {{ form.hidden_tag() }}
+
+                        <div class="mb-3">
+
+                            {{ form.usuario.label(class="form-label") }}
+
+                            {{ form.usuario(
+                                class="form-control",
+                                placeholder="Ingrese un nombre de usuario"
+                            ) }}
+
+                            {% for error in form.usuario.errors %}
+
+                                <div class="text-danger mt-1">
+                                    {{ error }}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            {{ form.password.label(class="form-label") }}
+
+                            {{ form.password(
+                                class="form-control",
+                                placeholder="Ingrese una contraseña"
+                            ) }}
+
+                            {% for error in form.password.errors %}
+
+                                <div class="text-danger mt-1">
+                                    {{ error }}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            {{ form.confirmar_password.label(
+                                class="form-label"
+                            ) }}
+
+                            {{ form.confirmar_password(
+                                class="form-control",
+                                placeholder="Repita la contraseña"
+                            ) }}
+
+                            {% for error in form.confirmar_password.errors %}
+
+                                <div class="text-danger mt-1">
+                                    {{ error }}
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        {% with mensajes = get_flashed_messages(
+                            with_categories=true
+                        ) %}
+
+                            {% if mensajes %}
+
+                                {% for categoria, mensaje in mensajes %}
+
+                                    <div class="alert alert-{{ categoria }}">
+                                        {{ mensaje }}
+                                    </div>
+
+                                {% endfor %}
+
+                            {% endif %}
+
+                        {% endwith %}
+
+
+                        <div class="d-grid">
+
+                            {{ form.registrar(
+                                class="btn btn-primary"
+                            ) }}
+
+                        </div>
+
+                    </form>
+
+
+                    <div class="text-center mt-4">
+
+                        <p class="mb-2">
+                            ¿Ya tiene una cuenta?
+                        </p>
+
+                        <a
+                            href="{{ url_for('login') }}"
+                            class="btn btn-outline-secondary">
+                            Iniciar sesión
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

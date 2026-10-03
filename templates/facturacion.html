@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}Facturación{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <h1 class="text-center mb-4">
+            Facturación
+        </h1>
+
+        {% with mensajes = get_flashed_messages(
+            with_categories=true
+        ) %}
+
+            {% if mensajes %}
+
+                {% for categoria, mensaje in mensajes %}
+
+                    <div class="alert alert-{{ categoria }}">
+                        {{ mensaje }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- FORMULARIO DE FACTURACIÓN -->
+
+        <div class="card p-4 mb-5">
+
+            <h3 class="mb-4">
+
+                {% if modo == "editar" %}
+                    Modificar factura
+                {% else %}
+                    Registrar factura
+                {% endif %}
+
+            </h3>
+
+            <form method="POST">
+
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+
+                    {{ form.cliente.label(class="form-label") }}
+
+                    {{ form.cliente(class="form-control") }}
+
+                    {% for error in form.cliente.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    {{ form.producto.label(class="form-label") }}
+
+                    {{ form.producto(class="form-control") }}
+
+                    {% for error in form.producto.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    {{ form.cantidad.label(class="form-label") }}
+
+                    {{ form.cantidad(class="form-control") }}
+
+                    {% for error in form.cantidad.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    {{ form.precio.label(class="form-label") }}
+
+                    {{ form.precio(class="form-control") }}
+
+                    {% for error in form.precio.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                {{ form.submit(class="btn btn-primary") }}
+
+
+                {% if modo == "editar" %}
+
+                    <a
+                        href="{{ url_for('facturacion') }}"
+                        class="btn btn-secondary ms-2">
+                        Cancelar
+                    </a>
+
+                {% endif %}
+
+            </form>
+
+        </div>
+
+
+        <!-- LISTADO DE FACTURAS -->
+
+        <h3 class="mb-4">
+            Facturas registradas
+        </h3>
+
+
+        {% if facturas %}
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Cliente</th>
+
+                            <th>Fecha</th>
+
+                            <th>Producto</th>
+
+                            <th>Cantidad</th>
+
+                            <th>Precio</th>
+
+                            <th>Total</th>
+
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for factura in facturas %}
+
+                            <tr>
+
+                                <td>
+                                    {{ factura["id_factura"] }}
+                                </td>
+
+                                <td>
+                                    {{ factura["cliente_nombre"] }}
+                                </td>
+
+                                <td>
+                                    {{ factura["fecha"] }}
+                                </td>
+
+                                <td>
+                                    {{ factura["producto"] }}
+                                </td>
+
+                                <td>
+                                    {{ factura["cantidad"] }}
+                                </td>
+
+                                <td>
+                                    ${{ factura["precio"] }}
+                                </td>
+
+                                <td>
+                                    ${{ factura["total"] }}
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="{{ url_for(
+                                            'editar_factura',
+                                            id=factura['id_factura']
+                                        ) }}"
+                                        class="btn btn-warning btn-sm">
+                                        Modificar
+                                    </a>
+
+
+                                    <form
+                                        method="POST"
+                                        action="{{ url_for(
+                                            'eliminar_factura',
+                                            id=factura['id_factura']
+                                        ) }}"
+                                        class="d-inline">
+
+                                        {{ form.hidden_tag() }}
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm(
+                                                '¿Está seguro de eliminar esta factura?'
+                                            );">
+                                            Eliminar
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info text-center">
+
+                No hay facturas registradas.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

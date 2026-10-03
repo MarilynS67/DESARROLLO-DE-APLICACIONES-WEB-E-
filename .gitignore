@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.env
+
+ferreteria_backup.sql
+ferreteria_render.sql

@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <h1 class="text-center mb-4">
+            Clientes
+        </h1>
+
+
+        {% with mensajes = get_flashed_messages(
+            with_categories=true
+        ) %}
+
+            {% if mensajes %}
+
+                {% for categoria, mensaje in mensajes %}
+
+                    <div class="alert alert-{{ categoria }}">
+                        {{ mensaje }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- FORMULARIO -->
+
+        <div class="card p-4 mb-5">
+
+            <h3 class="mb-4">
+
+                {% if modo == "editar" %}
+                    Modificar cliente
+                {% else %}
+                    Registrar cliente
+                {% endif %}
+
+            </h3>
+
+
+            <form method="POST">
+
+                {{ form.hidden_tag() }}
+
+
+                <div class="mb-3">
+
+                    {{ form.nombre.label(
+                        class="form-label"
+                    ) }}
+
+                    {{ form.nombre(
+                        class="form-control"
+                    ) }}
+
+                    {% for error in form.nombre.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    {{ form.email.label(
+                        class="form-label"
+                    ) }}
+
+                    {{ form.email(
+                        class="form-control"
+                    ) }}
+
+                    {% for error in form.email.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    {{ form.telefono.label(
+                        class="form-label"
+                    ) }}
+
+                    {{ form.telefono(
+                        class="form-control"
+                    ) }}
+
+                    {% for error in form.telefono.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    {{ form.direccion.label(
+                        class="form-label"
+                    ) }}
+
+                    {{ form.direccion(
+                        class="form-control"
+                    ) }}
+
+                    {% for error in form.direccion.errors %}
+
+                        <div class="text-danger mt-1">
+                            {{ error }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                {{ form.submit(
+                    class="btn btn-primary"
+                ) }}
+
+
+                {% if modo == "editar" %}
+
+                    <a
+                        href="{{ url_for('clientes') }}"
+                        class="btn btn-secondary ms-2">
+                        Cancelar
+                    </a>
+
+                {% endif %}
+
+            </form>
+
+        </div>
+
+
+        <!-- LISTA DE CLIENTES -->
+
+        <h3 class="mb-4">
+            Clientes registrados
+        </h3>
+
+
+        {% if clientes %}
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Nombre</th>
+
+                            <th>Cédula</th>
+
+                            <th>Teléfono</th>
+
+                            <th>Correo</th>
+
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for cliente in clientes %}
+
+                            <tr>
+
+                                <td>
+                                    {{ cliente["id_cliente"] }}
+                                </td>
+
+                                <td>
+                                    {{ cliente["nombre"] }}
+                                </td>
+
+                                <td>
+                                    {{ cliente["cedula"] }}
+                                </td>
+
+                                <td>
+                                    {{ cliente["telefono"] }}
+                                </td>
+
+                                <td>
+                                    {{ cliente["correo"] }}
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="{{ url_for(
+                                            'editar_cliente',
+                                            id=cliente['id_cliente']
+                                        ) }}"
+                                        class="btn btn-warning btn-sm">
+                                        Modificar
+                                    </a>
+
+
+                                    <form
+                                        method="POST"
+                                        action="{{ url_for(
+                                            'eliminar_cliente',
+                                            id=cliente['id_cliente']
+                                        ) }}"
+                                        class="d-inline">
+
+                                        {{ form.hidden_tag() }}
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm(
+                                                '¿Está seguro de eliminar este cliente?'
+                                            );">
+                                            Eliminar
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+
+                Todavía no hay clientes registrados.
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+{% endblock %}
